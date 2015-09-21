@@ -6,6 +6,11 @@
 - name: install pkg
   yum: name=squid state=present
 
+- name: config
+  lineinfile: dest="{{item.file}}" regexp="{{item.regex}}" line="{{item.line}}"
+  with_items: squid_conf
+  notify: svc restart squid
+
 - name: start, enable svc
   service: name=squid state=started enabled=yes
 
