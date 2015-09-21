@@ -1,0 +1,11 @@
+---
+
+- name: install deps
+  yum: name=libselinux-python state=present
+
+- name: install pkg
+  yum: name=squid state=present
+
+- name: start, enable svc
+  service: name=squid state=started enabled=yes
+
